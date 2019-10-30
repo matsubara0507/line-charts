@@ -13,6 +13,7 @@ import Svg.Attributes as Attributes
 import LineChart.Coordinate as Coordinate exposing (..)
 import Internal.Data as Data
 import Color
+import Color.Transparent as Transparent
 
 
 
@@ -306,23 +307,23 @@ varietyAttributes : Color.Color -> Variety -> List (Svg.Attribute msg)
 varietyAttributes color variety =
   case variety of
     Empty width ->
-      [ Attributes.stroke (Color.toCssString color)
+      [ Attributes.stroke (Color.toRGBString color)
       , Attributes.strokeWidth (String.fromInt width)
       , Attributes.fill "white"
       ]
 
     Aura width opacity ->
-      [ Attributes.stroke (Color.toCssString color)
+      [ Attributes.stroke (Transparent.toRGBAString <| Transparent.fromColor (Transparent.customOpacity opacity) color)
       , Attributes.strokeWidth (String.fromInt width)
       , Attributes.strokeOpacity (String.fromFloat opacity)
-      , Attributes.fill (Color.toCssString color)
+      , Attributes.fill (Color.toRGBString color)
       ]
 
     Disconnected width ->
       [ Attributes.stroke "white"
       , Attributes.strokeWidth (String.fromInt width)
-      , Attributes.fill (Color.toCssString color)
+      , Attributes.fill (Color.toRGBString color)
       ]
 
     Full ->
-      [ Attributes.fill (Color.toCssString color) ]
+      [ Attributes.fill (Color.toRGBString color) ]

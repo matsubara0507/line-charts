@@ -21,6 +21,7 @@ import Internal.Axis.Title as Title
 import Internal.Svg as Svg exposing (..)
 import Internal.Utils exposing (..)
 import Color
+import Color.Transparent as Transparent
 import Time
 
 
@@ -272,10 +273,12 @@ viewVerticalAxisLine system axisPosition config =
 
 
 attributesLine : Coordinate.System -> AxisLine.Properties msg -> List (Svg.Attribute msg)
-attributesLine system { events, width, color } =
+attributesLine system { events, width, color, opacity } =
   events ++
     [ strokeWidth (String.fromFloat width)
-    , stroke (Color.toCssString color)
+    , case opacity of
+        Nothing -> stroke (Color.toRGBString color)
+        Just op -> stroke (Transparent.toRGBAString <| Transparent.fromColor op color)
     , Svg.withinChartArea system
     ]
 
@@ -307,7 +310,7 @@ lengthOfTick { length, direction } =
 
 attributesTick : Tick.Properties msg -> List (Svg.Attribute msg)
 attributesTick { width, color } =
-  [ strokeWidth (String.fromFloat width), stroke (Color.toCssString color) ]
+  [ strokeWidth (String.fromFloat width), stroke (Color.toRGBString color) ]
 
 
 viewHorizontalLabel : Coordinate.System -> Tick.Properties msg -> Data.Point -> Svg msg -> Svg msg

@@ -28,6 +28,7 @@ import Internal.Svg as Svg
 import Time
 import DateFormat
 import Color
+import LineChart.Colors as Colors
 
 
 
@@ -152,7 +153,7 @@ time : Time -> Config msg
 time time_ =
   custom
     { position = Basics.toFloat (Time.posixToMillis time_.timestamp)
-    , color = Color.gray
+    , color = Colors.gray
     , width = 1
     , length = 5
     , grid = True

@@ -5,6 +5,7 @@ import Svg exposing (Attribute)
 import LineChart.Colors as Colors
 import Internal.Coordinate as Coordinate
 import Color
+import Color.Transparent as Transparent
 
 
 
@@ -23,7 +24,8 @@ default =
 none : Config msg
 none =
   custom <| \_ {min, max} ->
-    { color = Colors.transparent
+    { color = Colors.black
+    , opacity = Just Transparent.transparent
     , width = 0
     , events = []
     , start = min
@@ -36,6 +38,7 @@ full : Color.Color -> Config msg
 full color =
   custom <| \data range ->
     { color = color
+    , opacity = Nothing
     , width = 1
     , events = []
     , start = range.min
@@ -49,6 +52,7 @@ rangeFrame color =
   custom <| \data range ->
     let smallest = Coordinate.smallestRange data range in
     { color = color
+    , opacity = Nothing
     , width = 1
     , events = []
     , start = smallest.min
@@ -63,6 +67,7 @@ rangeFrame color =
 {-| -}
 type alias Properties msg =
   { color : Color.Color
+  , opacity : Maybe Transparent.Opacity
   , width : Float
   , events : List (Attribute msg)
   , start : Float

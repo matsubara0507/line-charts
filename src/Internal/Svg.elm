@@ -71,7 +71,7 @@ gridDot radius color point =
     [ Attributes.cx (String.fromFloat point.x)
     , Attributes.cy (String.fromFloat point.y)
     , Attributes.r (String.fromFloat radius)
-    , Attributes.fill (Color.toCssString color)
+    , Attributes.fill (Color.toRGBString color)
     ]
     []
 
@@ -86,7 +86,7 @@ horizontal system userAttributes y x1 x2 =
   let
     attributes =
       concat
-        [ Attributes.stroke (Color.toCssString Colors.gray)
+        [ Attributes.stroke (Color.toRGBString Colors.gray)
         , Attributes.style "pointer-events: none;"
         ] userAttributes []
   in
@@ -103,7 +103,7 @@ vertical system userAttributes x y1 y2 =
   let
     attributes =
       concat
-        [ Attributes.stroke (Color.toCssString Colors.gray)
+        [ Attributes.stroke (Color.toRGBString Colors.gray)
         , Attributes.style "pointer-events: none;"
         ] userAttributes []
   in
@@ -120,7 +120,7 @@ rectangle system userAttributes x1 x2 y1 y2 =
   let
     attributes =
       concat
-        [ Attributes.fill (Color.toCssString Colors.gray) ]
+        [ Attributes.fill (Color.toRGBString Colors.gray) ]
         userAttributes []
   in
     Path.view system attributes
@@ -137,7 +137,7 @@ horizontalGrid system userAttributes y =
   let
     attributes =
       concat
-        [ Attributes.stroke (Color.toCssString Colors.gray)
+        [ Attributes.stroke (Color.toRGBString Colors.gray)
         , Attributes.style "pointer-events: none;"
         ] userAttributes []
   in
@@ -150,7 +150,7 @@ verticalGrid system userAttributes x =
   let
     attributes =
       concat
-        [ Attributes.stroke (Color.toCssString Colors.gray)
+        [ Attributes.stroke (Color.toRGBString Colors.gray)
         , Attributes.style "pointer-events: none;"
         ] userAttributes []
   in
@@ -167,7 +167,7 @@ xTick system height userAttributes y x =
   let
     attributes =
       concat
-        [ Attributes.stroke (Color.toCssString Colors.gray) ]
+        [ Attributes.stroke (Color.toRGBString Colors.gray) ]
         userAttributes
         [ Attributes.x1 <| String.fromFloat (toSvgX system x)
         , Attributes.x2 <| String.fromFloat (toSvgX system x)
@@ -185,7 +185,7 @@ yTick system width userAttributes x y =
     attributes =
       concat
         [ Attributes.class "chart__tick"
-        , Attributes.stroke (Color.toCssString Colors.gray)
+        , Attributes.stroke (Color.toRGBString Colors.gray)
         ]
         userAttributes
         [ Attributes.x1 <| String.fromFloat (toSvgX system x)

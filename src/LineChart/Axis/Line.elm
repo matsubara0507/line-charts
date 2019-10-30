@@ -16,6 +16,7 @@ import Svg exposing (Attribute)
 import LineChart.Coordinate as Coordinate
 import Internal.Axis.Line as Line
 import Color
+import Color.Transparent as Transparent
 
 
 
@@ -100,6 +101,7 @@ none =
 {-| -}
 type alias Properties msg =
   { color : Color.Color
+  , opacity : Maybe Transparent.Opacity
   , width : Float
   , events : List (Attribute msg)
   , start : Float

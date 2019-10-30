@@ -81,7 +81,7 @@ viewLines : Coordinate.System -> List Float -> List Float -> Float -> Color.Colo
 viewLines system verticals horizontals width color =
   let
     attributes =
-      [ Attributes.strokeWidth (String.fromFloat width), Attributes.stroke (Color.toCssString color) ]
+      [ Attributes.strokeWidth (String.fromFloat width), Attributes.stroke (Color.toRGBString color) ]
   in
   List.map (Svg.horizontalGrid system attributes) horizontals ++
   List.map (Svg.verticalGrid system attributes) verticals

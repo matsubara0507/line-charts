@@ -258,7 +258,7 @@ toSeriesAttributes : Series data -> Style -> List (Svg.Attribute msg)
 toSeriesAttributes (Series serie) (Style style_) =
   [ Attributes.style "pointer-events: none;"
   , Attributes.class "chart__interpolation__line__fragment"
-  , Attributes.stroke (Color.toCssString (style_.color serie.color))
+  , Attributes.stroke (Color.toRGBString (style_.color serie.color))
   , Attributes.strokeWidth (String.fromFloat style_.width)
   , Attributes.strokeDasharray (String.join " " (List.map String.fromFloat serie.dashing))
   , Attributes.fill "transparent"
@@ -292,7 +292,7 @@ viewArea { system, lineConfig, area } line_ style_ interpolation data_ =
 toAreaAttributes : Series data -> Style -> Area.Config -> List (Svg.Attribute msg)
 toAreaAttributes (Series serie) (Style style_) area =
   [ Attributes.class "chart__interpolation__area__fragment"
-  , Attributes.fill (Color.toCssString (style_.color serie.color))
+  , Attributes.fill (Color.toRGBString (style_.color serie.color))
   ]
 
 
